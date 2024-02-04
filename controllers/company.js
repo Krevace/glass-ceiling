@@ -3,9 +3,11 @@ var _ = require('lodash');
 
 exports.fetchStats = async (req, res) => {
     const users = await User.find({'stats.company': req.params.id}).exec();
+    const validationErrors = [];
     if (users.length == 0) {
-        res.redirect('/');
-        return;
+        validationErrors.push({ msg: 'Company not found, sorry!' });
+        req.flash('info', validationErrors);
+        return res.redirect('/');;
     }
 
     let positionSalaries = [];
