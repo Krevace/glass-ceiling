@@ -30,8 +30,10 @@ const userSchema = new mongoose.Schema({
   },
 
   stats: {
+    company: String,
+    position: String,
     salary: Number,
-    company: String
+    gender: String
   }
 }, { timestamps: true });
 

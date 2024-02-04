@@ -6,6 +6,7 @@ const _ = require('lodash');
 const validator = require('validator');
 const mailChecker = require('mailchecker');
 const User = require('../models/User');
+const { Stats } = require('fs');
 
 const randomBytesAsync = promisify(crypto.randomBytes);
 
@@ -138,7 +139,13 @@ exports.postSignup = async (req, res, next) => {
     }
     const user = new User({
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      stats: {
+        company: req.body.company,
+        position: req.body.position,
+        salary: req.body.salary,
+        gender: req.body.gender
+      }
     });
     await user.save();
     req.logIn(user, (err) => {
@@ -169,7 +176,6 @@ exports.getAccount = (req, res) => {
 exports.postUpdateProfile = async (req, res, next) => {
   const validationErrors = [];
   if (!validator.isEmail(req.body.email)) validationErrors.push({ msg: 'Please enter a valid email address.' });
-
   if (validationErrors.length) {
     req.flash('errors', validationErrors);
     return res.redirect('/account');
@@ -183,6 +189,10 @@ exports.postUpdateProfile = async (req, res, next) => {
     user.profile.gender = req.body.gender || '';
     user.profile.location = req.body.location || '';
     user.profile.website = req.body.website || '';
+    user.stats.company = req.body.company || '';
+    user.stats.position = req.body.position || '';
+    user.stats.salary = req.body.salary || '';
+    user.stats.gender = req.body.gender || '';
     await user.save();
     req.flash('success', { msg: 'Profile information has been updated.' });
     res.redirect('/account');

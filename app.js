@@ -50,6 +50,7 @@ const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
 const apiController = require('./controllers/api');
 const contactController = require('./controllers/contact');
+const companyController = require('./controllers/company');
 
 /**
  * API keys and Passport configuration.
@@ -138,8 +139,9 @@ app.use('/webfonts', express.static(path.join(__dirname, 'node_modules/@fortawes
 /**
  * Primary app routes.
  */
-app.get('/', homeController.index);
-app.post('/', homeController.form);
+app.get('/', passportConfig.isAuthenticated, homeController.index);
+app.post('/', passportConfig.isAuthenticated, homeController.form);
+app.get('/company/:id', passportConfig.isAuthenticated, companyController.fetchStats);
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
 app.get('/logout', userController.logout);

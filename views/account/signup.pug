@@ -3,12 +3,33 @@ extends ../layout
 block content
   .pb-2.mt-2.mb-4.border-bottom
     h3 Sign up
-  form(id='signup-form', method='POST')
+  form(id='signup-form', method='POST', onsubmit='handleFormSubmission(event)')
     input(type='hidden', name='_csrf', value=_csrf)
     .form-group.row.mb-3
       label.col-md-3.col-form-label.font-weight-bold.text-right(for='email') Email
       .col-md-7
         input.form-control(type='email', name='email', id='email', placeholder='Email', autofocus, autocomplete='email', required)
+    .form-group.row.mb-3
+      label.col-md-3.col-form-label.font-weight-bold.text-right(for='company') Company
+      .col-md-7
+        input.form-control(type='company', name='company', id='company', placeholder='Company', autofocus, autocomplete='company', required)
+    .form-group.row.mb-3
+      label.col-md-3.col-form-label.font-weight-bold.text-right(for='position') Position
+      .col-md-7
+        input.form-control(type='position', name='position', id='position', placeholder='Position', autofocus, autocomplete='position', required)
+    .form-group.row.mb-3
+      label.col-md-3.col-form-label.font-weight-bold.text-right(for='salary') Salary (USD)
+      .col-md-7
+        input.form-control(type='salary', name='salary', id='salary', placeholder='Salary', autofocus, autocomplete='salary', required, pattern='^[+]?[0-9,]+$')
+    .form-group.row.mb-3
+      label.col-md-3.col-form-label.font-weight-bold.text-right(for='gender') Gender
+      .col-md-7
+        select.form-control(type='gender', name='gender', id='gender', autofocus, autocomplete='gender', required)
+          option(value='', disabled, selected) Select an option
+          option(value='male') Male 
+          option(value='female') Female
+          option(value='non-binary') Non-binary 
+          option(value='other') Other 
     .form-group.row.mb-3
       label.col-md-3.col-form-label.font-weight-bold.text-right(for='password') Password
       .col-md-7
@@ -21,3 +42,12 @@ block content
       button.btn.btn-success(type='submit')
         i.fas.fa-user-plus.fa-sm.iconpadding
         | Signup
+               
+  script.
+    function handleFormSubmission(event) {
+      event.preventDefault();
+      const salaryInput = document.getElementById('salary');
+      const cleanedSalary = salaryInput.value.replace(/,/g, '');
+      salaryInput.value = cleanedSalary;
+      event.target.submit();
+    }

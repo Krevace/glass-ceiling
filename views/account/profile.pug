@@ -4,7 +4,7 @@ block content
   .pb-2.mt-2.mb-4.border-bottom
     h3 Profile Information
 
-  form(action='/account/profile', method='POST')
+  form(action='/account/profile', method='POST', onsubmit='handleFormSubmission(event)')
     input(type='hidden', name='_csrf', value=_csrf)
     .form-group.row
       label.col-md-3.col-form-label.font-weight-bold.text-right(for='email') Email
@@ -19,40 +19,42 @@ block content
             | Unverified: &nbsp;
             a(href='/account/verify') Send verification email
     .form-group.row
-      label.col-md-3.col-form-label.font-weight-bold.text-right(for='name') Name
-      .col-md-7.mt-2
-        input.form-control(type='text', name='name', id='name', value=user.profile.name, autocomplete='name')
-    .form-group.row
+      label.col-md-3.col-form-label.font-weight-bold.text-right(for='company') Company
+      .col-md-7
+        input.form-control(type='company', name='company', id='company', value=user.stats.company, autocomplete='company', required)
+      .offset-sm-3.col-md-7.pl-3.mb-2
+      label.col-md-3.col-form-label.font-weight-bold.text-right(for='position') Position
+      .col-md-7
+        input.form-control(type='position', name='position', id='position', value=user.stats.position, autocomplete='position', required)
+      .offset-sm-3.col-md-7.pl-3.mb-2
+      label.col-md-3.col-form-label.font-weight-bold.text-right(for='salary') Salary
+      .col-md-7
+        input.form-control(type='salary', name='salary', id='salary', value=user.stats.salary, autocomplete='salary', required, pattern='^[+]?[0-9,]+$')
+      .offset-sm-3.col-md-7.pl-3.mb-2
       label.col-md-3.col-form-label.font-weight-bold.text-right Gender
       .col-sm-6.mt-2
-        .form-check.form-check-inline
-          input(type='radio', class='form-check-input' checked=user.profile.gender == 'male', name='gender', value='male', data-toggle='radio')
-          label.form-check-label Male
-
-        .form-check.form-check-inline
-          input(type='radio', class='form-check-input' checked=user.profile.gender == 'female', name='gender', value='female', data-toggle='radio')
-          label.form-check-label Female
-
-        .form-check.form-check-inline
-          input(type='radio', class='form-check-input' checked=user.profile.gender == 'other', name='gender', value='other', data-toggle='radio')
-          label.form-check-label Other
+        select.form-control(type='gender', name='gender', id='gender', value=user.stats.gender, autocomplete='gender', required) 
+          option(value='', disabled, selected) Select an option
+          option(value='male') Male 
+          option(value='female') Female
+          option(value='non-binary') Non-binary 
+          option(value='other') Other 
     .form-group.row
-      label.col-md-3.col-form-label.font-weight-bold.text-right(for='location') Location
-      .col-md-7.mb-2
-        input.form-control(type='text', name='location', id='location', value=user.profile.location, autocomplete)
-    .form-group.row
-      label.col-md-3.col-form-label.font-weight-bold.text-right(for='website') Website
-      .col-md-7.mb-2
-        input.form-control(type='text', name='website', id='website', value=user.profile.website, autocomplete='url')
-    .form-group.row
-      label.col-md-3.col-form-label.font-weight-bold.text-right Gravatar
+      label.col-md-3.col-form-label.font-weight-bold.text-right
       .col-sm-4.mb-2
-        img(src=user.gravatar(), class='profile', width='100', height='100')
     .form-group
       .offset-sm-3.col-md-7.pl-2
         button.btn.btn.btn-primary(type='submit')
           i.fas.fa-pencil-alt.fa-sm.iconpadding
           | Update Profile
+  script.
+    function handleFormSubmission(event) {
+      event.preventDefault();
+      const salaryInput = document.getElementById('salary');
+      const cleanedSalary = salaryInput.value.replace(/,/g, '');
+      salaryInput.value = cleanedSalary;
+      event.target.submit();
+    }
 
   .pb-2.mt-2.mb-4.border-bottom
     h3 Change Password
@@ -94,41 +96,3 @@ block content
       else
         p.mb-1: a(href='/auth/google') Link your Google account
     .offset-sm-3.col-md-7.pl-2
-      if user.facebook
-        p.mb-1: a.text-danger(href='/account/unlink/facebook') Unlink your Facebook account
-      else
-        p.mb-1: a(href='/auth/facebook') Link your Facebook account
-      if user.snapchat
-        p.mb-1: a.text-danger(href='/account/unlink/snapchat') Unlink your Snapchat account
-      else
-        p.mb-1: a(href='/auth/snapchat') Link your Snapchat account
-    .offset-sm-3.col-md-7.pl-2
-      if user.twitter
-        p.mb-1: a.text-danger(href='/account/unlink/twitter') Unlink your Twitter account
-      else
-        p.mb-1: a(href='/auth/twitter') Link your Twitter account
-    .offset-sm-3.col-md-7.pl-2
-      if user.github
-        p.mb-1: a.text-danger(href='/account/unlink/github') Unlink your GitHub account
-      else
-        p.mb-1: a(href='/auth/github') Link your GitHub account
-    .offset-sm-3.col-md-7.pl-2
-      if user.linkedin
-        p.mb-1: a.text-danger(href='/account/unlink/linkedin') Unlink your LinkedIn account
-      else
-        p.mb-1: a(href='/auth/linkedin') Link your LinkedIn account
-    .offset-sm-3.col-md-7.pl-2
-      if user.steam
-        p.mb-1: a.text-danger(href='/account/unlink/steam') Unlink your Steam account
-      else
-        p.mb-1: a(href='/auth/steam') Link your Steam account
-    .offset-sm-3.col-md-7.pl-2
-      if user.twitch
-        p.mb-1: a.text-danger(href='/account/unlink/twitch') Unlink your Twitch account
-      else
-        p.mb-1: a(href='/auth/twitch') Link your Twitch account
-    .offset-sm-3.col-md-7.pl-2
-      if user.quickbooks
-        p.mb-1: a.text-danger(href='/account/unlink/quickbooks') Unlink your QuickBooks account
-      else
-        p.mb-1: a(href='/auth/quickbooks') Link your QuickBooks account
