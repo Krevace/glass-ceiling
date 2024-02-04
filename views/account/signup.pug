@@ -42,10 +42,17 @@ block content
       button.btn.btn-success(type='submit')
         i.fas.fa-user-plus.fa-sm.iconpadding
         | Signup
-               
+
   script.
     function handleFormSubmission(event) {
       event.preventDefault();
+
+      const companyInput = document.getElementById('company');
+      companyInput.value = companyInput.value.toLowerCase();
+
+      const positionInput = document.getElementById('position');
+      positionInput.value = positionInput.value.toLowerCase();
+
       const salaryInput = document.getElementById('salary');
       const cleanedSalary = salaryInput.value.replace(/,/g, '');
       salaryInput.value = cleanedSalary;

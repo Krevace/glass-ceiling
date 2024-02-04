@@ -13,7 +13,7 @@ exports.index = async (req, res) => {
 };
 
 exports.form = async (req, res) => {
-  res.redirect('/company/'+req.body.search)
+  res.redirect('/company/'+(req.body.search).toLowerCase())
 
   /*
   let user = new User(req.body);

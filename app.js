@@ -141,6 +141,7 @@ app.use('/webfonts', express.static(path.join(__dirname, 'node_modules/@fortawes
  */
 app.get('/', passportConfig.isAuthenticated, homeController.index);
 app.post('/', passportConfig.isAuthenticated, homeController.form);
+app.get('/company', passportConfig.isAuthenticated, companyController.invalid);
 app.get('/company/:id', passportConfig.isAuthenticated, companyController.fetchStats);
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);

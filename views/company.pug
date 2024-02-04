@@ -2,7 +2,12 @@ extends layout
 
 block content
   h1 #{title}
-  ul 
-    for salary in salaries 
-        li= salary.gender + ": $" + salary.averageSalary
+  ul
+    for positionData in salaries
+        li= positionData.position
+            ul 
+                for salaryData in positionData.averages 
+                    li= salaryData.gender + ": $" + salaryData.averageSalary 
+            
+
 

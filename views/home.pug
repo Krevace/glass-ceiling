@@ -2,25 +2,10 @@ extends layout
 
 block content
   h1 Glass Ceiling
+  hr 
+  h1 Search
   form(method="POST")
     input(type='hidden', name='_csrf', value=_csrf)
     input(type="text" name="search" placeholder="Search for a company...")
     input.btn.btn-primary(type="submit" value="Submit")
-  hr 
-  h1 User Emails 
-  ul 
-    each user in users 
-      li= user.email
-  hr
-  form(method='POST')
-    input(type='hidden', name='_csrf', value=_csrf)
-    #form-group 
-      label Email: 
-      input.form-control(name='email', type='text')
-    #form-group 
-      label Company: 
-      input.form-control(name='company', type='text')
-    #form-group 
-      label Salary: 
-      input.form-control(name='salary', type='text')
-    input.btn.btn-primary(type='submit', value='Submit')
+  
