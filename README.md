@@ -1,6 +1,6 @@
 Glass Ceiling
 =======================
-Developed for the VT HackViolet Hackathon in around 15 hours. The Hackathon had no theme, though suggestions included female empowerment and social good. So, my teammate [Tyler](https://github.com/tylerlusczek) and I decided to make "Glass Ceiling", a web-app similar to Glass Door but instead focused on spreading awareness of the issue of the wage gap between genders. 
+Developed for the VT HackViolet Hackathon in around 15 hours. The Hackathon had no theme, though suggestions included female empowerment and social good. So, my teammate [Tyler](https://github.com/tylerlusczek) and I decided to make "Glass Ceiling", a web-app similar to Glass Door but instead focused on spreading awareness of the issue of the wage gap between genders. The final version shown to the Hackathon judges was [here](https://github.com/Krevace/glass-ceiling/tree/25ecc3adcde4344df70b203394ba26a76d0dcaba).
 
 We spent most of the first half of the Hackathon learning how we would possibly make a website, as neither of us had any experience, though I had worked with MongoDB before in the past. By the end, we had a basic understanding of Express.js, Node.js, and Pug. We also used sahat's [Hackathon Starter Template](https://github.com/sahat/hackathon-starter), which heavily held our hands in setting up the project and teaching us the fundumentals. We're pretty satisfied with the end result.
 
