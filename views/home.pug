@@ -1,11 +1,10 @@
 extends layout
 
 block content
-  h1 Glass Ceiling
-  hr 
-  h1 Search
-  form(method="POST")
-    input(type='hidden', name='_csrf', value=_csrf)
-    input(type="text" name="search" placeholder="Search for a company...")
-    input.btn.btn-primary(type="submit" value="Submit")
+  #centerDiv
+    div
+      img.d-inline-block.align-text-top(src='/GlassCeilingLogo.png' alt='' width='544' height='200')
+      form(method="POST")
+        input(type='hidden', name='_csrf', value=_csrf)
+        input.form-control(type="text" name="search" placeholder="Search for a company...")
   

@@ -5,27 +5,9 @@ block head
 
 block content
   .pb-2.mt-2.mb-4.border-bottom
-    h3 Contact Form
+    h3 About Us
 
   form(method='POST')
     input(type='hidden', name='_csrf', value=_csrf)
-    if (unknownUser)
-      .form-group.row
-        label(class='col-md-2 col-form-label font-weight-bold', for='name') Name
-        .col-md-8
-          input.form-control(type='text', name='name', id='name', autocomplete='name', autofocus, required)
-      .form-group.row
-        label(class='col-md-2 col-form-label font-weight-bold', for='email') Email
-        .col-md-8
-          input.form-control(type='email', name='email', id='email', autocomplete='email', required)
     .form-group.row
-      label(class='col-md-2 col-form-label font-weight-bold', for='message') Please describe the issue or your suggestion
-      .col-md-8
-        textarea.form-control(name='message', id='message', rows='7', autofocus=(!unknownUser).toString(), required)
-    .form-group
-      .offset-md-2.col-md-8.p-1
-        .g-recaptcha(data-sitekey=sitekey)
-        br
-        button.btn.btn-primary(type='submit')
-          i.far.fa-envelope.fa-sm.iconpadding
-          | Send
+      label(class='col-md-7 col-form-label font-weight-bold', for='message') At Glass Ceiling, we envisioned an idea that could shed light on the unfair wage gap between genders in the workplace. We believe that being a platform to drive this issue forward can be a positive start to encourage people to be the change to eliminate the pay gap!

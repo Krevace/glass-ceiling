@@ -10,13 +10,6 @@ block content
       .col-md-7
         input.form-control(type='email', name='email', id='email', value=user.email, autocomplete='email', required)
       .offset-sm-3.col-md-7.pl-3.mb-2
-        if user.emailVerified
-          .text-success.font-italic
-            | Verified
-        else
-          .text-danger.font-italic
-            | Unverified: &nbsp;
-            a(href='/account/verify') Send verification email
     .form-group.row
       label.col-md-3.col-form-label.font-weight-bold.text-right(for='company') Company
       .col-md-7
@@ -26,7 +19,7 @@ block content
       .col-md-7
         input.form-control(type='position', name='position', id='position', value=user.stats.position.toLowerCase(), autocomplete='position', required)
       .offset-sm-3.col-md-7.pl-3.mb-2
-      label.col-md-3.col-form-label.font-weight-bold.text-right(for='salary') Salary
+      label.col-md-3.col-form-label.font-weight-bold.text-right(for='salary') Salary (USD)
       .col-md-7
         input.form-control(type='salary', name='salary', id='salary', value=user.stats.salary, autocomplete='salary', required, pattern='^[+]?[0-9,]+$')
       .offset-sm-3.col-md-7.pl-3.mb-2
@@ -86,11 +79,3 @@ block content
           | Delete my account
 
   .pb-2.mt-2.mb-4.border-bottom
-    h3 Linked Accounts
-  .form-group
-    .offset-sm-3.col-md-7.pl-2
-      if user.google
-        p.mb-1: a.text-danger(href='/account/unlink/google') Unlink your Google account
-      else
-        p.mb-1: a(href='/auth/google') Link your Google account
-    .offset-sm-3.col-md-7.pl-2
