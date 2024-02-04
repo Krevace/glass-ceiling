@@ -27,6 +27,11 @@ const userSchema = new mongoose.Schema({
     location: String,
     website: String,
     picture: String
+  },
+
+  stats: {
+    salary: Number,
+    company: String
   }
 }, { timestamps: true });
 

@@ -1,9 +1,21 @@
+const User = require('../models/User');
+
 /**
  * GET /
  * Home page.
  */
-exports.index = (req, res) => {
+exports.index = async (req, res) => {
+  const users = await User.find({}).exec();
   res.render('home', {
-    title: 'Home'
+    title: 'Home',
+    users: users
   });
 };
+
+exports.form = async (req, res) => {
+  let user = new User(req.body);
+  user.stats.salary = req.body.salary;
+  user.stats.company = req.body.company;
+  await user.save();
+  res.redirect('back');
+}
