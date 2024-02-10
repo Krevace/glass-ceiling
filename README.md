@@ -6,4 +6,4 @@ We spent most of the first half of the Hackathon learning how we would possibly 
 
 If we were to make some changes in the future, we'd give the company pages some flair instead of just displaying the salary data in plaintext. An autocomplete feature on the home page would've also served the project well. And a much needed optimization would be to add company collections to the database, so we wouldn't have to query the entire userbase whenever a company is searched up. But it's a hackathon, cut us some slack,  maybe we can revisit these potential features in the future.
 
-Try the website [here!](https://glass-ceiling.onrender.com/)
+The website was hosted on [render](https://render.com) for the competition, but has since been taken down.
