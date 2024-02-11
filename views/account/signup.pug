@@ -48,10 +48,10 @@ block content
       event.preventDefault();
 
       const companyInput = document.getElementById('company');
-      companyInput.value = companyInput.value.toLowerCase();
+      companyInput.value = _.startCase(companyInput.value.toLowerCase());
 
       const positionInput = document.getElementById('position');
-      positionInput.value = positionInput.value.toLowerCase();
+      positionInput.value = _.startCase(positionInput.value.toLowerCase());
 
       const salaryInput = document.getElementById('salary');
       const cleanedSalary = salaryInput.value.replace(/,/g, '');

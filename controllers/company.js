@@ -37,15 +37,15 @@ exports.fetchStats = async (req, res) => {
             let { totalSalary, count } = salaries[gender];
             return {
                 gender: _.startCase(gender),
-                averageSalary: count > 0 ? totalSalary / count : 0
+                averageSalary: count > 0 ? (totalSalary / count).toFixed(0) : 0
             };
         });
-        position = _.startCase(position);
+        position = position;
         return { position, averages };
     });
     
     res.render('company', {
-        title: _.startCase(req.params.id),
+        title: req.params.id,
         salaries: positionAverageSalaries
     });
   };

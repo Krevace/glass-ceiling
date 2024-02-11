@@ -1,4 +1,5 @@
 const User = require('../models/User');
+var _ = require("lodash")
 
 /**
  * GET /
@@ -13,7 +14,7 @@ exports.index = async (req, res) => {
 };
 
 exports.form = async (req, res) => {
-  res.redirect('/company/'+(req.body.search).toLowerCase())
+  res.redirect('/company/'+_.startCase((req.body.search).toLowerCase()))
 
   /*
   let user = new User(req.body);
